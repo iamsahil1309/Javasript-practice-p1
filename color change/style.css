@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page {
+  height: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.boxes {
+    display : flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+#grey,#blue,#white,#yellow,#purple {
+    height: 150px;
+    width: 150px;
+}
+
+#grey {
+    background-color: grey;
+    border: 4px solid black;
+}
+
+
+#blue {
+    background-color: blue;
+    border: 4px solid black;
+}
+
+#yellow {
+    background-color: yellow;
+    border: 4px solid black;
+}
+
+#white {
+    background-color: white;
+    border: 4px solid black;
+}
+
+#purple {
+    background-color: purple;
+    border: 4px solid black;
+}
+
+p{
+    margin-top: 2vh;
+    font-size: 5vh;
+}
+
+h1 {
+    margin-bottom: 5vh;
+    font-size: 4vw;
+}

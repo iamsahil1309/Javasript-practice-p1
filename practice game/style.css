@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: grey;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  text-align: center;
+  flex-direction: column;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+form label {
+    font-size: 5vw;
+}
+
+input {
+    height: 45px;
+    border: none;
+    border-style: none;
+}
+
+.result {
+    margin-top: 5vw;
+}
+
+p {
+    font-size: 3vw;
+}

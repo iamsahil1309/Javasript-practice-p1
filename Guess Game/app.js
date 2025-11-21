@@ -71,6 +71,7 @@ function endGame(){
     userInput.setAttribute("disabled", "")
     p.classList.add('button')
     p.innerHTML = `<h2 id='newGame'>Start New Game</h2>`
+    console.log(p)
     startOver.appendChild(p)
     playGame = false
     newGame()
@@ -78,7 +79,7 @@ function endGame(){
 
 function newGame () {
     const newGameBtn = document.querySelector("#newGame")
-    newGameBtn.addEventListener("click",(e) => {
+    newGameBtn.addEventListener("click",() => {
         randomNumber = parseInt((Math.random()*100) + 1)
         prevGuess = []
         numGuess = 1

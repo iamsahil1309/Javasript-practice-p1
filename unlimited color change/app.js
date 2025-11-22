@@ -3,24 +3,27 @@ const randomColor = () => {
   let color = "#";
 
   for (i = 0; i < 6; i++) {
-    color += hex[Math.floor(Math.random() * 16)]
+    color += hex[Math.floor(Math.random() * 16)];
   }
-  return color
+  return color;
 };
 //  console.log(randomColor())
-let interval
+let interval;
 
 const startChangeColor = () => {
-        document.body.style.backgroundColor = randomColor()
-}
+  document.body.style.backgroundColor = randomColor();
+};
 
 const changeColor = () => {
-    interval = setInterval( startChangeColor, 1000);
-}
+  if (!interval) {
+    interval = setInterval(startChangeColor, 1000);
+  }
+};
 
 const stopChangeColor = () => {
-    clearInterval(interval)
-}
+  clearInterval(interval);
+  interval = null;
+};
 
-document.getElementById('start').addEventListener("click", changeColor)
-document.getElementById('stop').addEventListener('click', stopChangeColor)
+document.getElementById("start").addEventListener("click", changeColor);
+document.getElementById("stop").addEventListener("click", stopChangeColor);

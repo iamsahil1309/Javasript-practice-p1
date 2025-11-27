@@ -23,3 +23,8 @@ class Teacher extends User {
 const tea = new Teacher("yugji")
 tea.addCourse()
 console.log(tea instanceof User)
+
+
+
+const arr = []
+%DebugPrint(arr)

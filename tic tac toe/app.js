@@ -59,6 +59,11 @@ boxes.forEach(box => {
     })
 })
 
+const gameDraw = () => {
+    winMsg.innerText = 'Game Draw!'
+     msgContainer.classList.remove("hide");
+     disabledBoxes();
+}
 
 const checkWinner = () => {
     for(let pattern of winPattern) {

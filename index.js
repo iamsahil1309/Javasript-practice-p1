@@ -28,3 +28,6 @@ console.log(tea instanceof User)
 
 const arr = []
 %DebugPrint(arr)
+
+
+let randomNumber = Math.random()

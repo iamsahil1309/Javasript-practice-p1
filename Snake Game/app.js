@@ -12,6 +12,8 @@ let snake = [
   { x: 1, y: 6 },
 ];
 
+let direction = 'left'
+
 for (let row = 0; row < rows; row++) {
   for (let col = 0; col < cols; col++) {
     const block = document.createElement("div");

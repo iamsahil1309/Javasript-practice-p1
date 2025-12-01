@@ -1,9 +1,18 @@
 const board = document.querySelector(".board");
+const startButton = document.querySelector(".btn-start");
+const modal = document.querySelector('.modal')
 const rowBlock = 30;
 const colBlock = 30;
 
 const rows = Math.floor(board.clientWidth / rowBlock);
 const cols = Math.floor(board.clientHeight / colBlock);
+
+startButton.addEventListener("click", () => {
+  modal.style.display = "none"
+  intervalId = setInterval(() => {
+    renderSnake();
+  }, 300);
+});
 
 let blocks = [];
 let snake = [{ x: 1, y: 4 }];
@@ -50,7 +59,7 @@ const renderSnake = () => {
     };
     blocks[`${food.x} - ${food.y}`].classList.add("food");
 
-    snake.unshift(head)
+    snake.unshift(head);
   }
 
   if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols) {
@@ -69,10 +78,6 @@ const renderSnake = () => {
     blocks[`${box.x} - ${box.y}`].classList.add("fill");
   });
 };
-
-intervalId = setInterval(() => {
-  renderSnake();
-}, 300);
 
 addEventListener("keydown", (e) => {
   // console.log(e.key)

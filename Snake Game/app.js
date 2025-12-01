@@ -51,10 +51,10 @@ const renderSnake = () => {
   //   snake.unshift(head)
   // }
 
-  // if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols) {
-  //   alert("game over");
-  //   clearInterval(intervalId);
-  // }
+  if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols) {
+    alert("game over");
+    clearInterval(intervalId);
+  }
 
   snake.forEach((box) => {
     blocks[`${box.x} - ${box.y}`].classList.remove("fill");

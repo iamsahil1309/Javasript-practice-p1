@@ -4,6 +4,17 @@ const restartButton = document.querySelector(".btn-restart");
 const modal = document.querySelector(".modal");
 const startGameModal = document.querySelector(".start-game");
 const gameOverModal = document.querySelector(".game-over");
+let highScoreEl = document.querySelector("#high-score")
+let timeEl = document.querySelector("#time")
+let scoreEl = document.querySelector("#score")
+
+
+let highScore = localStorage.getItem("highScore") || 0
+let score = 0
+let time = `00:00`
+
+highScoreEl.innerText = highScore;
+
 
 const rowBlock = 30;
 const colBlock = 30;
@@ -21,12 +32,15 @@ startButton.addEventListener("click", () => {
 restartButton.addEventListener("click", restartGame);
 
 function restartGame() {
-  // remove already exist food and snake
+  // remove already exist food 
   blocks[`${food.x} - ${food.y}`].classList.remove("food")
 
-  // snake.forEach(box => {
-  //   blocks[`${box.x} - ${box.y}`].classList.remove("fill")
-  // })
+  score = 0
+  time = `00:00 `
+
+  scoreEl.innerText = score
+  timeEl.innerText = time
+  highScoreEl.innerText  = highScore
 
   modal.style.display = "none";
   snake = [{ x: 1, y: 4 }];
@@ -85,6 +99,13 @@ const renderSnake = () => {
     blocks[`${food.x} - ${food.y}`].classList.add("food");
 
     snake.unshift(head);
+    score += 10
+    scoreEl.innerText = score
+
+    if(score > highScore) {
+      highScore = score
+      localStorage.setItem("highScore", highScore.toString())
+    }
   }
   // game over
   if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols) {

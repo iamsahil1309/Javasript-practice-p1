@@ -40,16 +40,18 @@ const renderSnake = () => {
     head = { x: snake[0].x - 1, y: snake[0].y };
   }
 
-  // if (head.x == food.x && head.y == food.y) {
-  //   blocks[`${food.x} - ${food.y}`].classList.remove("food");
-  //   food = {
-  //     x: Math.floor(Math.random() * rows),
-  //     y: Math.floor(Math.random() * cols),
-  //   };
-  //   blocks[`${food.x} - ${food.y}`].classList.remove("food");
+  // food and consume food
 
-  //   snake.unshift(head)
-  // }
+  if (head.x == food.x && head.y == food.y) {
+    blocks[`${food.x} - ${food.y}`].classList.remove("food");
+    food = {
+      x: Math.floor(Math.random() * rows),
+      y: Math.floor(Math.random() * cols),
+    };
+    blocks[`${food.x} - ${food.y}`].classList.remove("food");
+
+    snake.unshift(head)
+  }
 
   if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols) {
     alert("game over");

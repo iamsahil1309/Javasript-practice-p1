@@ -4,6 +4,7 @@ const done = document.getElementById("done")
 const tasks = document.querySelectorAll(".task")
 const modal = document.querySelector('.modal')
 const toggleModal = document.getElementById("toggle-task")
+const modalBg = document.querySelector(".bg")
 
 let dropElement 
 
@@ -38,4 +39,8 @@ dragAndDropTask(done)
 
 toggleModal.addEventListener("click", () => {
     modal.classList.add("active")
+})
+
+modalBg.addEventListener("click", () => {
+    modal.classList.remove("active")
 })

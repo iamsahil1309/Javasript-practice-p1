@@ -4,6 +4,8 @@ const done = document.getElementById("done");
 const tasks = document.querySelectorAll(".task");
 const modal = document.querySelector(".modal");
 const toggleModal = document.getElementById("toggle-task");
+const taskInput = document.getElementById("input");
+const taskText = document.getElementById("text-input");
 const modalBg = document.querySelector(".bg");
 const addTask = document.getElementById("add-new-task");
 
@@ -18,22 +20,29 @@ modalBg.addEventListener("click", () => {
 });
 
 addTask.addEventListener("click", () => {
-  const taskInput = document.getElementById("input").value;
-  const taskText = document.getElementById("text-input").value;
-
   const div = document.createElement("div");
   div.classList.add("task");
   div.setAttribute("draggable", "true");
-  div.innerHTML = `<h2>${taskInput}</h2>
-                    <p>${taskText}</p>
+  div.innerHTML = `<h2>${taskInput.value}</h2>
+                    <p>${taskText.value}</p>
                     <button>Delete</button>`;
   todo.appendChild(div);
+
+  [todo, progress, done].forEach((col) => {
+    const tasks = col.querySelectorAll(".task");
+    const count = col.querySelector(".count");
+    count.innerText = tasks.length;
+  });
 
   div.addEventListener("drag", () => {
     dropElement = div;
   });
 
   modal.classList.remove("active");
+
+  taskInput.value = ""
+  taskText.value = ""
+
 });
 
 tasks.forEach((task) => {
@@ -58,6 +67,12 @@ const dragAndDropTask = (taskCol) => {
     e.preventDefault();
     taskCol.appendChild(dropElement);
     taskCol.classList.remove("hover-over");
+
+    [todo, progress, done].forEach((col) => {
+      const tasks = col.querySelectorAll(".task");
+      const count = col.querySelector(".count");
+      count.innerText = tasks.length;
+    });
   });
 };
 

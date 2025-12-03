@@ -10,6 +10,28 @@ const modalBg = document.querySelector(".bg");
 const addTask = document.getElementById("add-new-task");
 
 let dropElement;
+let taskData = {};
+
+if (localStorage.getItem("tasks")) {
+  const data = JSON.parse(localStorage.getItem("tasks"));
+
+  for (const col in data) {
+    const column = document.querySelector(`#${col}`);
+
+    data[col].forEach((task) => {
+
+      const div = document.createElement("div");
+      div.classList.add("task");
+      div.setAttribute("draggable", "true");
+      div.innerHTML = `<h2>${task.title}</h2>
+                    <p>${task.desc}</p>
+                    <button>Delete</button>`;
+
+      column.appendChild(div);
+
+    });
+  }
+}
 
 toggleModal.addEventListener("click", () => {
   modal.classList.add("active");
@@ -28,29 +50,41 @@ addTask.addEventListener("click", () => {
                     <button>Delete</button>`;
   todo.appendChild(div);
 
+  //   counter and add task to local storage
   [todo, progress, done].forEach((col) => {
     const tasks = col.querySelectorAll(".task");
     const count = col.querySelector(".count");
     count.innerText = tasks.length;
+
+    taskData[col.id] = Array.from(tasks).map((t) => {
+      return {
+        title: t.querySelector("h2"),
+        desc: t.querySelector("p"),
+      };
+    });
+    // console.log(taskData)
+    localStorage.setItem("tasks", JSON.stringify(taskData));
   });
 
+  //   add drag to new added task
   div.addEventListener("drag", () => {
     dropElement = div;
   });
 
   modal.classList.remove("active");
 
-  taskInput.value = ""
-  taskText.value = ""
-
+  taskInput.value = "";
+  taskText.value = "";
 });
 
+// drag tasks initially
 tasks.forEach((task) => {
   task.addEventListener("drag", () => {
     dropElement = task;
   });
 });
 
+// drag and drop functionality
 const dragAndDropTask = (taskCol) => {
   taskCol.addEventListener("dragenter", (e) => {
     e.preventDefault();
@@ -60,6 +94,8 @@ const dragAndDropTask = (taskCol) => {
     e.preventDefault();
     taskCol.classList.remove("hover-over");
   });
+
+  //   allow add or drop to another column
   taskCol.addEventListener("dragover", (e) => {
     e.preventDefault();
   });
@@ -72,6 +108,15 @@ const dragAndDropTask = (taskCol) => {
       const tasks = col.querySelectorAll(".task");
       const count = col.querySelector(".count");
       count.innerText = tasks.length;
+      
+        taskData[col.id] = Array.from(tasks).map((t) => {
+          return {
+            title: t.querySelector("h2"),
+            desc: t.querySelector("p"),
+          };
+        });
+        // console.log(taskData)
+        localStorage.setItem("tasks", JSON.stringify(taskData));
     });
   });
 };

@@ -43,7 +43,7 @@ function renderTodos() {
 
     if (todo.isEditing === true) {
       li.innerHTML = `
-        <input id='edit-${todo.id}' value=${todo.text}>
+        <input id='edit-${todo.id}' value='${todo.text}'>
         <button onClick="saveTodo(${todo.id})">SAVE</button>
         <button onClick="cancelTodo(${todo.id})">CANCEL</button>
         `;
@@ -70,6 +70,8 @@ function editTodo(id) {
 function saveTodo(id) {
   const input = document.getElementById(`edit-${id}`);
   const newText = input.value.trim();
+  if(!newText) return 
+
   todos = todos.map((todo) =>
     todo.id === id ? { ...todo, text: newText, isEditing: false } : todo
   );
@@ -79,7 +81,7 @@ function saveTodo(id) {
 
 function cancelTodo(id) {
   todos = todos.map((todo) =>
-    todo.id === id ? { ...todo, isEditing: fasle } : todo
+    todo.id === id ? { ...todo, isEditing: false } : todo
   );
   saveToLocalstorage()
   renderTodos();

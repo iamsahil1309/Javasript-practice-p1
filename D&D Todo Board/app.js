@@ -19,7 +19,6 @@ if (localStorage.getItem("tasks")) {
     const column = document.querySelector(`#${col}`);
 
     data[col].forEach((task) => {
-
       const div = document.createElement("div");
       div.classList.add("task");
       div.setAttribute("draggable", "true");
@@ -28,7 +27,6 @@ if (localStorage.getItem("tasks")) {
                     <button>Delete</button>`;
 
       column.appendChild(div);
-
     });
   }
 }
@@ -108,15 +106,15 @@ const dragAndDropTask = (taskCol) => {
       const tasks = col.querySelectorAll(".task");
       const count = col.querySelector(".count");
       count.innerText = tasks.length;
-      
-        taskData[col.id] = Array.from(tasks).map((t) => {
-          return {
-            title: t.querySelector("h2"),
-            desc: t.querySelector("p"),
-          };
-        });
-        // console.log(taskData)
-        localStorage.setItem("tasks", JSON.stringify(taskData));
+
+      taskData[col.id] = Array.from(tasks).map((t) => {
+        return {
+          title: t.querySelector("h2"),
+          desc: t.querySelector("p"),
+        };
+      });
+      // console.log(taskData)
+      localStorage.setItem("tasks", JSON.stringify(taskData));
     });
   });
 };
